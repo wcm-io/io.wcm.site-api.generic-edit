@@ -1,0 +1,124 @@
+  <sly data-sly-template.genericEditContainer="${@ genericComponent}">
+  <sly data-sly-test.valid="${genericComponent.valid}">
+    <div class="wcmio-siteapi-genericedit-container">
+      <h3 class="title">${component.properties.jcr:title @ i18n}</h3>
+      <div class="content-container">
+        <sly data-sly-test.isExperienceFragment="${genericComponent.experienceFragment}"
+            data-sly-call="${experienceFragment @ genericComponent=genericComponent}"/>
+        <sly data-sly-test="${!isExperienceFragment}">
+          <sly data-sly-call="${allProperties @ genericComponent=genericComponent}"/>
+          <sly data-sly-test="${genericComponent.container}"
+              data-sly-call="${container @ genericComponent=genericComponent}"/>
+        </sly>
+      </div>
+    </div>
+  </sly>
+  <sly data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+      data-sly-call="${template.placeholder @ isEmpty=!valid}"></sly>
+</sly>
+
+<sly data-sly-template.allProperties="${@ genericComponent}">
+  <sly data-sly-call="${simpleProperties @ properties=genericComponent.simpleProperties}"></sly>
+  <sly data-sly-call="${mediaProperties @ properties=genericComponent.mediaProperties}"></sly>
+  <sly data-sly-call="${linkProperties @ properties=genericComponent.linkProperties}"></sly>
+  <sly data-sly-call="${richTextProperties @ properties=genericComponent.richTextProperties}"></sly>
+  <sly data-sly-call="${componentProperties @ properties=genericComponent.componentProperties}"></sly>
+</sly>
+
+<sly data-sly-template.simpleProperties="${@ properties}">
+  <sly data-sly-test="${!properties.empty}">
+    <table class="simple-properties" data-sly-list.property="${properties}">
+      <tr>
+        <th>${property.label}</th>
+        <td>
+          <sly data-sly-test.singleValue="${property.singleValue}"
+              data-sly-call="${simplePropertyValue @ value=property.value}"/>
+          <ul data-sly-test="${!singleValue}"
+              data-sly-list.value="${property.values}">
+            <li data-sly-call="${simplePropertyValue @ value=value}"></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </sly>
+</sly>
+
+<sly data-sly-template.simplePropertyValue="${@ value}">
+  <sly data-sly-test="${value.isNumber}">
+    ${value.numberValue}
+  </sly>
+  <sly data-sly-test="${value.isBoolean}">
+    ${value.booleanValue ? '☑' : '☐'}
+  </sly>
+  <sly data-sly-test="${value.isDate}">
+    ${'yyyy-MM-dd HH:mm:ss' @ format=value.dateValue}
+  </sly>
+  <sly data-sly-test="${value.isString}">
+    ${value.stringValue}
+  </sly>
+</sly>
+
+<sly data-sly-template.mediaProperties="${@ properties}">
+  <div class="media-properties" data-sly-test="${!properties.empty}">
+    <sly data-sly-list.property="${properties}">
+      <sly data-sly-list.media="${property.values}">
+        ${media.markup @ context='unsafe'}
+      </sly>
+    </sly>
+  </div>
+</sly>
+  
+<sly data-sly-template.linkProperties="${@ properties}">
+  <div class="link-properties" data-sly-test="${!properties.empty}">
+    <ul>
+      <sly data-sly-list.property="${properties}">
+        <sly data-sly-list.link="${property.values}">
+          <li><a data-sly-attribute="${link.htmlAttributes}">${property.label}</a></li>
+        </sly>
+      </sly>
+    </ul>
+  </div>
+</sly>
+
+<sly data-sly-template.richTextProperties="${@ properties}">
+  <div class="richtext-properties" data-sly-test="${!properties.empty}">
+    <sly data-sly-list.property="${properties}">
+      <sly data-sly-list.richText="${property.values}">
+        ${richText.text @ context='html'}
+      </sly>
+    </sly>
+  </div>
+</sly>
+
+<sly data-sly-template.componentProperties="${@ properties}">
+  <div class="component-properties" data-sly-test="${!properties.empty}">
+    <sly data-sly-list.property="${properties}">
+      <h4 class="component-properties-title">${property.label}</h4>
+      <sly data-sly-list.component="${property.values}">
+        <div class="component-item" data-sly-call="${allProperties @ genericComponent=component.instance}"></div>
+      </sly>
+    </sly>
+  </div>
+</sly>
+
+<sly data-sly-template.container="${@ genericComponent}">
+  <div class="children">
+    <sly data-sly-resource="${'.' @ resourceType='core/wcm/components/container/v1/container'}"/>
+  </div>
+</sly>
+
+<sly data-sly-template.experienceFragment="${@ genericComponent}">
+  <div class="experienceFragment">
+    <div class="toggle">
+      <label><input type="checkbox">
+        ${'io.wcm.siteapi.genericedit.components.component.showContent' @ i18n}:
+        <sly data-sly-list.property="${genericComponent.simpleProperties}">
+          <sly data-sly-test="${property.name == 'localizedFragmentVariationPath'}">${property.value.stringValue}</sly>
+        </sly>
+      </label>
+    </div>
+    <div class="content">
+      <sly data-sly-resource="${'.' @ resourceType='core/wcm/components/experiencefragment/v2/experiencefragment'}"/>
+    </div>
+  </div>
+</sly>

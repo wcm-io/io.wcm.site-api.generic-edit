@@ -1,0 +1,29 @@
+.cmp-breadcrumb {
+
+  .cmp-breadcrumb__list {
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .cmp-breadcrumb__item {
+    position: relative;
+    display: inline-block;
+
+    &.cmp-breadcrumb__item--active {
+      font-weight: bold;
+    }
+
+    &:not(:last-child)::after {
+      content: ' | '
+    }
+  }
+
+}
