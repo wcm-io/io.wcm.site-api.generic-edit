@@ -52,7 +52,7 @@
     <project.build.outputTimestamp>2023-09-13T07:26:17Z</project.build.outputTimestamp>
 
     <!-- Versions -->
-    <core.wcm.components.version>2.25.4</core.wcm.components.version>
+    <core.wcm.components.version>2.29.0</core.wcm.components.version>
   </properties>
 
   <dependencies>
