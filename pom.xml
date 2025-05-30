@@ -166,19 +166,6 @@
     </dependency>
 
   </dependencies>
-  <dependencyManagement>
-    <dependencies>
-
-      <dependency>
-        <groupId>io.wcm.maven</groupId>
-        <artifactId>io.wcm.maven.aem-dependencies</artifactId>
-        <version>6.5.17.0001</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-    </dependencies>
-  </dependencyManagement>
 
   <build>
 
