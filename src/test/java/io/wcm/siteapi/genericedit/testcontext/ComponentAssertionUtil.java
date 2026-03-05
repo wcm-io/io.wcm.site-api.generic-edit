@@ -134,15 +134,15 @@ public final class ComponentAssertionUtil {
     Map<String, Object> expectedValuesMap = toMap(expectedValues);
     SortedSet<String> expectedPropertyNames = new TreeSet<>(expectedValuesMap.keySet());
     SortedSet<String> actualPropertyNames = properties.stream()
-        .map(GenericProperty::getName)
-        .collect(Collectors.toCollection(TreeSet::new));
+      .map(GenericProperty::getName)
+      .collect(Collectors.toCollection(TreeSet::new));
     assertEquals(expectedPropertyNames, actualPropertyNames, propertyType + " properties");
 
     for (Map.Entry<String, Object> expectedValueEntry : expectedValuesMap.entrySet()) {
       String propertyName = expectedValueEntry.getKey();
       GenericProperty<T> property = properties.stream()
-          .filter(item -> StringUtils.equals(item.getName(), propertyName))
-          .findFirst().orElse(null);
+        .filter(item -> StringUtils.equals(item.getName(), propertyName))
+        .findFirst().orElse(null);
       assertNotNull(property, propertyType + " property '" + propertyName + "' not found.");
       assertTrue(property.isValid(), propertyType + " property '" + propertyName + "' is not valid.");
 
@@ -165,6 +165,7 @@ public final class ComponentAssertionUtil {
 
   @FunctionalInterface
   private interface TriConsumer<T, U, V> {
+
     void accept(T t, U u, V v);
   }
 

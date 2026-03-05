@@ -110,7 +110,9 @@ class PropertyIntrospectorTest {
   @Test
   @SuppressWarnings("null")
   void testDownloadComponent() throws IOException {
-    try (InputStream is = new ByteArrayInputStream(new byte[] { 0x01, 0x02, 0x03 })) {
+    try (InputStream is = new ByteArrayInputStream(new byte[] {
+        0x01, 0x02, 0x03
+    })) {
       context.create().asset("/content/dam/sample.pdf", is, "application/pdf");
     }
 

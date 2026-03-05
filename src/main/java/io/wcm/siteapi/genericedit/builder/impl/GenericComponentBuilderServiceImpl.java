@@ -120,10 +120,10 @@ public class GenericComponentBuilderServiceImpl implements GenericComponentBuild
     Map<String, List<Object>> rawProperties = propertyIntrospector.getPropertiesMap();
 
     List<GenericPropertyImpl<?>> properties = rawProperties.entrySet().stream()
-        .filter(entry -> !ignorePropertyPatterns.matches(entry.getKey()))
-        .map(entry -> processProperty(entry.getKey(), entry.getValue(), modelInstance, resource))
-        .filter(property -> !property.getValues().isEmpty())
-        .collect(Collectors.toList());
+      .filter(entry -> !ignorePropertyPatterns.matches(entry.getKey()))
+      .map(entry -> processProperty(entry.getKey(), entry.getValue(), modelInstance, resource))
+      .filter(property -> !property.getValues().isEmpty())
+      .collect(Collectors.toList());
 
     if (this.beautifyPropertyNames) {
       for (GenericPropertyImpl<?> property : properties) {
@@ -133,9 +133,9 @@ public class GenericComponentBuilderServiceImpl implements GenericComponentBuild
 
     // check if any component validator detects an invalid component - otherwise assume validness
     boolean isValid = validatorResolver.resolveAll(resource)
-        .map(validator -> validator.isValid(modelInstance))
-        .filter(valid -> !valid)
-        .findFirst().orElse(true);
+      .map(validator -> validator.isValid(modelInstance))
+      .filter(valid -> !valid)
+      .findFirst().orElse(true);
 
     return new GenericComponentImpl(modelInstance, properties, isValid);
   }
@@ -157,22 +157,22 @@ public class GenericComponentBuilderServiceImpl implements GenericComponentBuild
 
     // check all inspectors if given value is a special value
     List<?> values = inspectorResolver.resolveAll(resource)
-        .map(inspector -> inspector.inspect(key, rawValues, modelInstance))
-        .filter(resultValues -> !resultValues.isEmpty())
-        .findFirst().orElse(List.of());
+      .map(inspector -> inspector.inspect(key, rawValues, modelInstance))
+      .filter(resultValues -> !resultValues.isEmpty())
+      .findFirst().orElse(List.of());
 
     // no matching inspector found, check for nested components, otherwise transform to simple values
     if (values.isEmpty()) {
       boolean isNestedComponents = rawValues.stream().allMatch(ComponentExporter.class::isInstance);
       if (isNestedComponents) {
         values = rawValues.stream()
-            .map(instance -> new ComponentValueImpl(build(instance, resource)))
-            .collect(Collectors.toList());
+          .map(instance -> new ComponentValueImpl(build(instance, resource)))
+          .collect(Collectors.toList());
       }
       else {
         values = rawValues.stream()
-            .map(SimpleValueImpl::new)
-            .collect(Collectors.toList());
+          .map(SimpleValueImpl::new)
+          .collect(Collectors.toList());
       }
     }
 
