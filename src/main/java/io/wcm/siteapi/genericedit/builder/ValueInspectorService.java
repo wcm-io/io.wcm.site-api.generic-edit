@@ -49,9 +49,9 @@ public abstract class ValueInspectorService<T extends GenericValue> implements C
   public List<T> inspect(@NotNull String key, @NotNull List<Object> rawValues,
       @NotNull Object instance) {
     return rawValues.stream()
-        .map(rawValue -> inspectValue(key, rawValue, instance))
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+      .map(rawValue -> inspectValue(key, rawValue, instance))
+      .filter(Objects::nonNull)
+      .collect(Collectors.toList());
   }
 
   /**

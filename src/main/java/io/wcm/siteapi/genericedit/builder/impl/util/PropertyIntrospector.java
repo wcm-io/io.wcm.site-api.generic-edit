@@ -51,7 +51,7 @@ public final class PropertyIntrospector {
 
   private static final ObjectMapper OBJECT_MAPPER = JsonMapper.builder().build();
   private static final JavaType MAP_TYPE = OBJECT_MAPPER.getTypeFactory()
-      .constructMapType(Map.class, String.class, Object.class);
+    .constructMapType(Map.class, String.class, Object.class);
 
   private static final Set<String> DEFAULT_IGNORE_METHODS = Set.of("toString", "hashCode", "getClass");
   private static final List<String> DEFAULT_GETTER_PREFIXES = List.of("get", "is");
@@ -86,9 +86,9 @@ public final class PropertyIntrospector {
       @NotNull Set<String> allowedProperties) {
     Class<?> clazz = instance.getClass();
     List<Method> getterMethods = Stream.of(clazz.getMethods())
-        .filter(method -> method.getParameterTypes().length == 0 && method.getReturnType() != void.class)
-        .filter(method -> !DEFAULT_IGNORE_METHODS.contains(method.getName()))
-        .collect(Collectors.toList());
+      .filter(method -> method.getParameterTypes().length == 0 && method.getReturnType() != void.class)
+      .filter(method -> !DEFAULT_IGNORE_METHODS.contains(method.getName()))
+      .collect(Collectors.toList());
     Map<String, List<Object>> result = new TreeMap<>();
     for (Method method : getterMethods) {
       String propertyName = toPropertyName(method, clazz);

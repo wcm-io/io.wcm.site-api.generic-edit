@@ -112,14 +112,16 @@ class GenericComponentImpl implements GenericComponent {
     return isValid && (isContainer() || allProperties.stream().anyMatch(GenericProperty::isValid));
   }
 
-  @SuppressWarnings({ "null", "unchecked" })
+  @SuppressWarnings({
+      "null", "unchecked"
+  })
   private static <T extends GenericValue> @NotNull List<GenericProperty<T>> filterValidProperties(
       @NotNull List<GenericPropertyImpl<?>> properties, @NotNull Class<T> type) {
     return properties.stream()
-        .filter(item -> item.isValid())
-        .filter(item -> item.is(type))
-        .map(item -> (GenericProperty<T>)item)
-        .collect(Collectors.toList());
+      .filter(item -> item.isValid())
+      .filter(item -> item.is(type))
+      .map(item -> (GenericProperty<T>)item)
+      .collect(Collectors.toList());
   }
 
 }

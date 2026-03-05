@@ -37,8 +37,7 @@ public class LinkUrlValueInspectorService extends ValueInspectorService<LinkValu
 
   private static final PatternList URL_PATTERNS = new PatternList(
       Pattern.compile("^http(s)?://[^{}]+$"),
-      Pattern.compile("^/content/dam/[^{}]+\\.[^\\.]+$")
-  );
+      Pattern.compile("^/content/dam/[^{}]+\\.[^\\.]+$"));
 
   @Override
   @SuppressWarnings("null")

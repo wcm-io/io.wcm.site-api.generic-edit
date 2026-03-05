@@ -43,13 +43,17 @@ class ValueListTest {
 
   @Test
   void testCollection() {
-    ValueList underTest = ValueList.from(Arrays.asList(new String[] { "v1", null, "v2" }));
+    ValueList underTest = ValueList.from(Arrays.asList(new String[] {
+        "v1", null, "v2"
+    }));
     assertEquals(List.of("v1", "v2"), underTest.get());
   }
 
   @Test
   void testArray() {
-    ValueList underTest = ValueList.from(new String[] { "v1", null, "v2" });
+    ValueList underTest = ValueList.from(new String[] {
+        "v1", null, "v2"
+    });
     assertEquals(List.of("v1", "v2"), underTest.get());
   }
 

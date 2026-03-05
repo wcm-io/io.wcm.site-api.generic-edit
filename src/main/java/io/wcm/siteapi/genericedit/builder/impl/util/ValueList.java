@@ -59,8 +59,8 @@ public final class ValueList {
       if (rawValue instanceof Collection) {
         Collection<Object> coll = (Collection)rawValue;
         coll.stream()
-            .filter(Objects::nonNull)
-            .forEach(values::add);
+          .filter(Objects::nonNull)
+          .forEach(values::add);
       }
       else if (rawValue.getClass().isArray()) {
         int length = Array.getLength(rawValue);
