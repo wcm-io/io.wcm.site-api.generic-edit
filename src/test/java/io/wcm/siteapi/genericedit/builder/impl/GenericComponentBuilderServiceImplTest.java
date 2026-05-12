@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -280,7 +280,7 @@ class GenericComponentBuilderServiceImplTest {
   @SuppressWarnings("null")
   void testValidation_Valid() {
     context.registerService(ComponentValidatorService.class,
-        modelInstance -> StringUtils.equals(((Title)modelInstance).getText(), "Valid"));
+        modelInstance -> Strings.CS.equals(((Title)modelInstance).getText(), "Valid"));
 
     Resource resource = context.currentResource(context.create().resource(page, "title",
         JCR_TITLE, "Valid",
@@ -298,7 +298,7 @@ class GenericComponentBuilderServiceImplTest {
     context.registerService(ComponentValidatorService.class,
         modelInstance -> true);
     context.registerService(ComponentValidatorService.class,
-        modelInstance -> StringUtils.equals(((Title)modelInstance).getText(), "Valid"));
+        modelInstance -> Strings.CS.equals(((Title)modelInstance).getText(), "Valid"));
     context.registerService(ComponentValidatorService.class,
         modelInstance -> true);
 

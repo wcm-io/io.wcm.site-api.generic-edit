@@ -32,7 +32,7 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.Nullable;
 
 import io.wcm.siteapi.genericedit.builder.impl.util.ValueList;
@@ -141,7 +141,7 @@ public final class ComponentAssertionUtil {
     for (Map.Entry<String, Object> expectedValueEntry : expectedValuesMap.entrySet()) {
       String propertyName = expectedValueEntry.getKey();
       GenericProperty<T> property = properties.stream()
-        .filter(item -> StringUtils.equals(item.getName(), propertyName))
+        .filter(item -> Strings.CS.equals(item.getName(), propertyName))
         .findFirst().orElse(null);
       assertNotNull(property, propertyType + " property '" + propertyName + "' not found.");
       assertTrue(property.isValid(), propertyType + " property '" + propertyName + "' is not valid.");

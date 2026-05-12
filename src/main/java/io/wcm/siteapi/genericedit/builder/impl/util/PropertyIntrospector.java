@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -119,7 +120,7 @@ public final class PropertyIntrospector {
     if (name == null) {
       name = method.getName();
       for (String getterPrefix : DEFAULT_GETTER_PREFIXES) {
-        if (StringUtils.startsWith(name, getterPrefix)) {
+        if (Strings.CS.startsWith(name, getterPrefix)) {
           name = Introspector.decapitalize(StringUtils.substringAfter(name, getterPrefix));
         }
       }

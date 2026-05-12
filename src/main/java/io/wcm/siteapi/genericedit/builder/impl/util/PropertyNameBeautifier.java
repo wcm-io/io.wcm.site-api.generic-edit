@@ -20,6 +20,7 @@
 package io.wcm.siteapi.genericedit.builder.impl.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -37,7 +38,7 @@ public final class PropertyNameBeautifier {
    * @return Beautified property name
    */
   public static @NotNull String apply(@NotNull String name) {
-    if (StringUtils.contains(name, ":")) {
+    if (Strings.CS.contains(name, ":")) {
       return apply(StringUtils.substringAfter(name, ":"));
     }
 
