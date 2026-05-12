@@ -36,7 +36,7 @@ class GenericEditDetectorTest {
   private AemContext context = AppAemContext.newAemContext();
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     context.currentPage(context.create().page("/content/site1/page1"));
   }
 

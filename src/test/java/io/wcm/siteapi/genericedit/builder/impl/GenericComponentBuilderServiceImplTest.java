@@ -84,7 +84,7 @@ class GenericComponentBuilderServiceImplTest {
   private LiveRelationshipManager liveRelationshipManager;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     context.registerService(LiveRelationshipManager.class, liveRelationshipManager);
 
     underTest = context.getService(GenericComponentBuilderService.class);
@@ -189,12 +189,12 @@ class GenericComponentBuilderServiceImplTest {
     assertRichTextProperties(component);
     assertComponentProperties(component,
         "actions", List.<Consumer<GenericComponent>>of(
-            (item) -> {
+            item -> {
               assertSimpleProperties(item, "title", "Action 1");
               assertLinkProperties(item,
                   "link", Map.of("href", "https://myhost"));
             },
-            (item) -> {
+            item -> {
               assertSimpleProperties(item, "title", "Action 2");
               assertLinkProperties(item,
                   "link", Map.of("href", "/content/site1/page1.html"));

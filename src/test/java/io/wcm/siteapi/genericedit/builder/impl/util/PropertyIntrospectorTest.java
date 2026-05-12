@@ -59,7 +59,7 @@ class PropertyIntrospectorTest {
   private Page page;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     page = context.create().page("/content/site1/page1");
   }
 
