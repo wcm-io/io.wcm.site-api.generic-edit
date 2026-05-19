@@ -28,8 +28,8 @@ If you are using [wcm.io Handler][handler] in your project, consider adding the 
 
 |Site API Generic Edit version | AEM Sites Core Component version |AEM version supported
 |------------------------------|----------------------------------|-----------------------
-|1.1.2 or higher               |2.25.4 and up                     |AEM 6.5.24+, AEM 6.6.2+, AEMaaCS
-|1.1.0                         |2.25.4 and up                     |AEM 6.5.17+, AEM 6.6.0+, AEMaaCS
+|1.2.0 or higher               |2.25.4 and up                     |AEM 6.5.24+, AEM 6.6.2+, AEMaaCS
+|1.1.x                         |2.25.4 and up                     |AEM 6.5.17+, AEM 6.6.0+, AEMaaCS
 
 
 ### Dependencies
